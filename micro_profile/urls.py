@@ -9,9 +9,8 @@ router = routers.DefaultRouter()
 
 
 
-
 urlpatterns = [
     path('', include('rest_auth.urls')),
-    path('rest-auth/registration/', include('rest_auth.registration.urls')),
+    path('registration/', include('rest_auth.registration.urls')),
     path('accounts/', include('allauth.urls')),
 ]

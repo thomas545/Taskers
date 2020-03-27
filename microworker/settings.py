@@ -31,9 +31,13 @@ INSTALLED_APPS = [
 
     'allauth.socialaccount.providers.google',
 
+    'phonenumber_field',
+    'mptt',
+
     # Applications
     'micro_profile',
     'tasks',
+    'chat',
 
 
 ]
@@ -50,10 +54,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'microworker.urls'
 
+TEMPLATES_DIRS = os.path.join(BASE_DIR, 'templates')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIRS],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -180,3 +186,6 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+
+PHONENUMBER_DB_FORMAT = 'INTERNATIONAL'
+PHONENUMBER_DEFAULT_REGION = 'EG'

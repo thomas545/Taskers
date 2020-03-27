@@ -22,9 +22,9 @@ urlpatterns = [
     path('', include('micro_profile.urls')),
     path('', include('tasks.urls')),
 
-    path('api-token-auth/', obtain_jwt_token),
-    path('api-token-refresh/', refresh_jwt_token),
-    path('api-token-verify/', verify_jwt_token),
+    path('token-auth/', obtain_jwt_token),
+    path('token-refresh/', refresh_jwt_token),
+    path('token-verify/', verify_jwt_token),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
