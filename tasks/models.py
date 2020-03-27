@@ -26,8 +26,6 @@ class Category(MPTTModel, TimeStampModel):
     def __str__(self):
         return self.name
 
-    def get_childrens(self):
-        pass
 
 class Task(TimeStampModel):
 
