@@ -21,6 +21,7 @@ urlpatterns = [
 
     path('', include('micro_profile.urls')),
     path('', include('tasks.urls')),
+    path('', include('chat.urls')),
 
     path('token-auth/', obtain_jwt_token),
     path('token-refresh/', refresh_jwt_token),

@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
@@ -76,9 +78,15 @@ class Task(TimeStampModel):
     def has_deal_accepted(self):
         return True if TaskDeal.objects.filter(task=self, is_accepted=True) else False
 
+@receiver(post_save, sender=Task)
+def create_task_deal(sender, instance, *args, **kwargs):
+    if instance.tasker and not instance.deals:
+        TaskDeal.objects.create(task=instance, is_accepted=True)
+
 
 
 class TaskDeal(TimeStampModel):
+    sender = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='sender_deal')
     task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='deals')
     is_accepted = models.BooleanField(default=False)
 

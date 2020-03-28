@@ -33,6 +33,7 @@ INSTALLED_APPS = [
 
     'phonenumber_field',
     'mptt',
+    'channels',
 
     # Applications
     'micro_profile',
@@ -73,7 +74,18 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'microworker.wsgi.application'
+ASGI_APPLICATION = 'microworker.routing.application'
 
+
+# Channels
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 # Databases
 # DATABASES = {
