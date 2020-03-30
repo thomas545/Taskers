@@ -26,3 +26,12 @@ DEBUG_TOOLBAR_CONFIG = {
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+
+# SWAGGER_SETTINGS = {
+#     'SECURITY_DEFINITIONS': {
+#         'basic': {
+#             'type': 'basic'
+#         }
+#     },
+# }

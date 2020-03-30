@@ -27,6 +27,8 @@ INSTALLED_APPS = [
 
     # Third Party Packages
     'rest_framework',
+    'drf_yasg',
+    # 'rest_framework_swagger',
     'django_filters',
     'rest_auth',
     'allauth',
@@ -121,6 +123,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 
 
