@@ -1,5 +1,6 @@
 # Middlewares
 
+
 class MiddlewareMixin:
     def __init__(self, get_response=None):
         self.get_response = get_response
@@ -30,8 +31,8 @@ class SimpleMiddleware:
 
         response = self.get_response(request)
 
-        print("request in __call__ - >>>", request)
-        print("response in __call__ - >>>", response.Response)
+        print("request in __call__ - >>>", request.auth)
+        print("response in __call__ - >>>", response)
         # Code to be executed for each request/response after
         # the view is called.
 

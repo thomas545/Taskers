@@ -17,19 +17,22 @@ class Address(TimeStampModel):
     # user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='address')
     street = models.CharField(max_length=255, blank=True)
     country = models.CharField(max_length=100, default='Egypt')
-    city = models.CharField(max_length=2, choices=profile_choices.GOVERNORATE_CHOICES, default='ca')
+    city = models.CharField(
+        max_length=2, choices=profile_choices.GOVERNORATE_CHOICES, default='ca')
     building_number = models.IntegerField(default=0)
     primary = models.BooleanField(default=False)
 
     def __str__(self):
-        return "Address (%s)"% self.id
+        return "Address (%s)" % self.id
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(UserModel, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(
+        UserModel, on_delete=models.CASCADE, related_name='profile')
     skills = models.ManyToManyField('tasks.Category', related_name='skills')
     addresses = models.ManyToManyField(Address, related_name='addresses')
-    profile_picture = models.ImageField(upload_to=profile_image_path, blank=True, null=True)
+    profile_picture = models.ImageField(
+        upload_to=profile_image_path, blank=True, null=True)
     about = models.TextField(blank=True, null=True)
     birth_date = models.DateField(blank=True, null=True)
     phone_number = PhoneNumberField(blank=True, null=True, unique=True, error_messages={
@@ -38,12 +41,14 @@ class Profile(models.Model):
         max_length=1, choices=profile_choices.TRANSPORTATION_CHOICES, null=True, blank=True)
     gender = models.CharField(
         max_length=1, choices=profile_choices.GENDER_CHOICES, null=True, blank=True)
-    id_number = models.IntegerField(validators=[MaxLengthValidator(14)], blank=True, null=True)
+    id_number = models.IntegerField(
+        validators=[MaxLengthValidator(14)], blank=True, null=True)
     accept_terms = models.BooleanField(default=False)
     is_tasker = models.BooleanField(default=False)
-    
+
     def __str__(self):
         return self.user.username
+
 
 @receiver(post_save, sender=UserModel)
 def create_profile(sender, instance, created, *args, **kwargs):

@@ -57,7 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'micro.middleware.MiddlewareMixin',
+    # 'micro.middleware.SimpleMiddleware',
 ]
 
 ROOT_URLCONF = 'microworker.urls'
@@ -138,9 +138,9 @@ REST_USE_JWT = True
 
 
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
-ACCOUNT_EMAIL_REQUIRED = False 
-ACCOUNT_EMAIL_VERIFICATION = "none" # choose one of "mandatory", "optional", or "none".
-
+ACCOUNT_EMAIL_REQUIRED = False
+# choose one of "mandatory", "optional", or "none".
+ACCOUNT_EMAIL_VERIFICATION = "none"
 
 
 AUTHENTICATION_BACKENDS = (

@@ -18,7 +18,8 @@ class TokenAuthMiddleware:
         headers = dict(scope['headers'])
         if b'authorization' in headers:
             try:
-                token_name, token_key = headers[b'authorization'].decode().split()
+                token_name, token_key = headers[b'authorization'].decode(
+                ).split()
                 if token_name == 'Token':
                     token = Token.objects.get(key=token_key)
                     scope['user'] = token.user
@@ -27,8 +28,9 @@ class TokenAuthMiddleware:
                 scope['user'] = AnonymousUser()
         return self.inner(scope)
 
-TokenAuthMiddlewareStack = lambda inner: TokenAuthMiddleware(AuthMiddlewareStack(inner))
 
+def TokenAuthMiddlewareStack(inner): return TokenAuthMiddleware(
+    AuthMiddlewareStack(inner))
 
 
 class JwtTokenAuthMiddleware:
@@ -41,12 +43,13 @@ class JwtTokenAuthMiddleware:
 
     def __call__(self, scope):
         try:
-            token_header = dict(scope['headers'])[b'authorization'].decode().split()
+            token_header = dict(scope['headers'])[
+                b'authorization'].decode().split()
             data = {'token': token_header[1]}
             valid_data = VerifyJSONWebTokenSerializer().validate(data)
             user = valid_data['user']
             scope['user'] = user
         except Exception as e:
             raise PermissionDenied(str(e))
-        
+
         return self.inner(scope)

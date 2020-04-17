@@ -8,10 +8,10 @@ GOVERNORATE_CHOICES = (
     ('ks', _('Kafr El Sheikh')),
     ('dk', _('Dakahlia')),
     ('da', _('Damietta')),
-    ('ps', _('Port Said')),	
+    ('ps', _('Port Said')),
     ('ns', _('North Sinai')),
     ('gr', _('Gharbia')),
-    ('mo', _('Monufia')),	
+    ('mo', _('Monufia')),
     ('qa', _('Qalyubia')),
     ('sh', _('Sharqia')),
     ('is', _('Ismailia')),
@@ -29,7 +29,7 @@ GOVERNORATE_CHOICES = (
     ('qn', _('Qena')),
     ('lx', _('Luxor')),
     ('sw', _('Aswan')),
-    )
+)
 
 
 TRANSPORTATION_CHOICES = (
