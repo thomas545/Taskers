@@ -64,7 +64,7 @@ class SerializerMeta(type):
         return real_cls
 
 
-class Serializer(six.with_metaclass(SerializerMeta, SerializerBase)):
+class Serializer(SerializerBase, metaclass=SerializerMeta):
     """:class:`Serializer` is used as a base for custom serializers.
 
     The :class:`Serializer` class is also a subclass of :class:`Field`, and can

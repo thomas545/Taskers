@@ -1,6 +1,6 @@
 import six
 import types
-
+from rest_framework import fields
 
 class Field(object):
     """:class:`Field` is used to define what attributes will be serialized.

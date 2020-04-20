@@ -7,6 +7,14 @@ from .serializers import *
 from .models import *
 
 
+
+class TaskView(generics.RetrieveAPIView):
+    serializer_class = TaskSerializer
+    queryset = Task.objects.all()
+
+
+
+
 class CategoryView(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
@@ -28,6 +36,8 @@ class CategoryView(viewsets.ModelViewSet):
 class CategoryListView(generics.ListCreateAPIView):
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
+    search_fields = ['name']
+    ordering_fields = ['created']
 
     def get_serializer_class(self):
         print("method -> ", self.request.method)

@@ -10,4 +10,5 @@ router.register('category', views.CategoryView)
 urlpatterns = [
     path('', include(router.urls)),
     path('list/', views.CategoryListView.as_view()),
+    path('task/<int:pk>/', views.TaskView.as_view()),
 ]

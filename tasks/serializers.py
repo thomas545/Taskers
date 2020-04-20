@@ -3,6 +3,8 @@ from phonenumber_field.serializerfields import PhoneNumberField
 from .models import *
 from .utils import ImageFieldName
 from collections import OrderedDict
+from micro.serializer import Serializer as GreatSerializer
+from micro import fields
 
 
 class CategorySerializer(serializers.Serializer):
@@ -33,3 +35,28 @@ class CategoryFetchSerializer(serializers.Serializer):
     name = serializers.CharField()
     description = serializers.CharField()
     image = ImageFieldName(required=False)
+
+
+class CategoryMiniSerializer(GreatSerializer):
+    id = fields.IntField()
+    name = fields.StrField()
+    description = fields.StrField()
+    image = fields.MethodField(required=False)
+
+    def get_image(self, obj):
+        return obj.image.url
+
+
+class TaskSerializer(GreatSerializer):
+    """
+    retrive one object only (one task)
+    """
+    pk = fields.IntField()
+    tasker = fields.StrField()
+    client = fields.StrField()
+    address = fields.StrField()
+    category = CategoryMiniSerializer()
+    title = fields.StrField()
+    description = fields.StrField()
+    status = fields.StrField()
+    price = fields.FloatField()

@@ -124,6 +124,25 @@ REST_FRAMEWORK = {
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser'
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'micro.pagination.LimitPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend', 
+        'rest_framework.filters.SearchFilter', 
+        'rest_framework.filters.OrderingFilter'
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        # 'rest_framework.renderers.CoreJSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        # 'rest_framework.renderers.AdminRenderer',
+
+    ]
 }
 
 
